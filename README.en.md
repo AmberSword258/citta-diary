@@ -4,6 +4,8 @@
 
 A local-first, fully offline, encrypted personal diary for the desktop: a calendar is the entry point, one page per day, written in Markdown, and everything stays on this machine.
 
+[![CI](https://github.com/AmberSword258/citta-diary/actions/workflows/ci.yml/badge.svg)](https://github.com/AmberSword258/citta-diary/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/AmberSword258/citta-diary?color=9c3d2e)](https://github.com/AmberSword258/citta-diary/releases/latest)
 ![Platform](https://img.shields.io/badge/platform-Windows-9c3d2e)
 ![Electron](https://img.shields.io/badge/Electron-33-9c3d2e)
 ![License](https://img.shields.io/badge/license-MIT-9c3d2e)
@@ -125,8 +127,8 @@ It is meant for people who want journalling to become a long-term habit without 
 
 ### Option 1: portable build (regular users)
 
-1. Unzip the `观心 Citta-win-x64` folder (see [Build the portable app](#build-the-portable-app)).
-2. Double-click `观心 Citta.exe` inside it.
+1. Download `观心 Citta-win-x64.1.0.0.7z` (~62.5 MB) from the [Releases page](https://github.com/AmberSword258/citta-diary/releases/latest), then unzip it to get the `观心 Citta-win-x64` folder.
+2. Double-click `观心 Citta.exe` inside it (portable, no installer and no admin rights needed).
 3. The first run guides you through setting a **startup password** and **three security questions**; after that the app asks for the password on every start.
 
 Diary data is not kept in the program folder — it is written to `%APPDATA%\观心 Citta`, and the "open data directory" button in Settings takes you straight there.

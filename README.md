@@ -4,6 +4,8 @@
 
 一款本地优先、完全离线、加密存储的个人日记桌面应用：以日历为入口，一天一页地写 Markdown 日记，所有内容只留在这台电脑上。
 
+[![CI](https://github.com/AmberSword258/citta-diary/actions/workflows/ci.yml/badge.svg)](https://github.com/AmberSword258/citta-diary/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/AmberSword258/citta-diary?color=9c3d2e)](https://github.com/AmberSword258/citta-diary/releases/latest)
 ![平台](https://img.shields.io/badge/platform-Windows-9c3d2e)
 ![Electron](https://img.shields.io/badge/Electron-33-9c3d2e)
 ![许可](https://img.shields.io/badge/license-MIT-9c3d2e)
@@ -126,8 +128,9 @@
 
 ### 方式一：免安装包（普通用户）
 
-1. 解压 `观心 Citta-win-x64` 文件夹（见[打包为免安装应用](#打包为免安装应用)）。
-2. 双击其中的 `观心 Citta.exe`。
+1. 到 [Releases 页面](https://github.com/AmberSword258/citta-diary/releases/latest) 下载
+   观心 Citta-win-x64.1.0.0.7z（约 62.5 MB），解压得到 观心 Citta-win-x64 文件夹。
+2. 双击其中的 观心 Citta.exe（免安装，不需要管理员权限）。
 3. 首次启动会引导你设置**启动密码**与**三个密保问题**，之后每次打开都需要输入密码解锁。
 
 日记数据不会放在程序目录里，而是写入 `%APPDATA%\观心 Citta`，设置面板里的「打开数据目录」可以直接定位到它。
