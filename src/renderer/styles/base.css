@@ -1,0 +1,307 @@
+/* ==========================================================================
+   观心 Citta —— 基础样式与设计令牌
+
+   气质：宣纸与墨的安静，但首先是一本能读、能用的本子。
+     · 有边界：该有框的地方就给框，元素才分得清
+     · 可读优先：正文 17px / 行高 1.85，主文字近墨色而非灰
+     · 一色点睛：朱色只用于「今天 / 焦点 / 选中 / 主操作」
+     · 心情五色：1 最伤心 → 5 最开心，冷蓝到暖橘，是全应用唯一允许彩色的一处
+     · 形状克制：圆角 6px、一条极轻的投影，不做浮夸卡片
+   ========================================================================== */
+
+:root {
+  /* ---- 纸面层次 ---- */
+  --paper: #f5f2ea;          /* 页面底：宣纸 */
+  --surface: #fffdf8;        /* 卡片面：略亮，让分组看得出来 */
+  --surface-soft: #f0ece2;   /* 次级面：输入、代码、悬浮 */
+  --surface-hover: #ebe6da;
+
+  /* ---- 墨色：主文字要够黑才读得舒服 ---- */
+  --ink-900: #1b1a18;        /* 主文字 */
+  --ink-700: #33302b;        /* 次主文字 */
+  --ink-600: #4a4741;        /* 正文辅助 */
+  --ink-400: #6f6a62;        /* 标签、说明（比之前深，保证可读） */
+  --ink-300: #96908a;        /* 只用于禁用态与占位符 */
+
+  /* ---- 边界：清晰但轻 ---- */
+  --line: #e2dcd0;           /* 主边界 */
+  --line-strong: #d3ccbd;    /* 强调边界（卡片、输入） */
+  --hairline: #ece7dc;       /* 同级分隔 */
+
+  /* ---- 点睛 ---- */
+  --vermilion: #9c3d2e;                      /* 朱砂：用于文字、边框、点睛 */
+  --vermilion-fill: #9c3d2e;                 /* 实心主按钮的底色 */
+  --vermilion-fill-hover: #8a3527;
+  --vermilion-soft: rgba(156, 61, 46, 0.12); /* 焦点环、选中底 */
+  --vermilion-border: rgba(156, 61, 46, 0.35);
+  --vermilion-wash: rgba(156, 61, 46, 0.04);
+  --moss: #55684f;
+
+  /* ---- 其他语义色 ---- */
+  --ring-ink: rgba(27, 26, 24, 0.16);        /* 圆点外那圈极淡的墨边 */
+  --scrim: rgba(26, 25, 23, 0.32);           /* 浮层遮罩 */
+  --scrim-strong: rgba(26, 25, 23, 0.88);    /* 图片灯箱 */
+
+  /* ---- 心情五色（1 最伤心 → 5 最开心，由冷到暖）---- */
+  --tone-1: #2d3a54;         /* 最伤心：夜蓝 */
+  --tone-2: #6381b3;         /* 略伤心：青蓝 */
+  --tone-3: #7cb899;         /* 平静：苔绿 */
+  --tone-4: #f4d35e;         /* 有点开心：暖黄 */
+  --tone-5: #ee7c2b;         /* 最开心：橘 */
+
+  /* ---- 排版 ---- */
+  --font-serif: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "SimSun", Georgia, serif;
+
+  --fs-display: 34px;
+  --fs-title: 24px;
+  --fs-subtitle: 19px;
+  --fs-body: 17px;           /* 正文字号：阅读舒适区 */
+  --fs-small: 14px;
+  --fs-label: 13px;          /* 次级信息也不再挤到 12px 以下 */
+
+  --lh-body: 1.85;
+  --ls-title: 0.08em;
+  --ls-body: 0.015em;
+  --ls-label: 0.1em;
+
+  /* ---- 间距 ---- */
+  --gap-page: 40px;
+  --gap-section: 56px;
+  --gap-item: 12px;
+  --pad-card: 24px;
+
+  /* ---- 形状 ---- */
+  --radius: 6px;
+  --radius-sm: 4px;
+  --radius-round: 999px;
+  --shadow-2: 0 6px 20px rgba(27, 26, 24, 0.08);
+  --shadow-3: 0 20px 60px rgba(27, 26, 24, 0.28);
+
+  /* ---- 动效 ---- */
+  --dur: 420ms;
+  --dur-fast: 160ms;
+  --ease: cubic-bezier(0.165, 0.84, 0.44, 1);
+
+  --indent: 2em;
+}
+
+/* --------------------------------------------------------------------------
+   深色：墨夜
+   同一套结构，只是纸换成夜、墨换成灯下的米白。
+   朱砂提亮一档（#9C3D2E 在夜里对比度只有 2.4，读不清），
+   实心按钮另用更沉的一档，保证白字压得住。
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] {
+  --paper: #171614;
+  --surface: #1f1e1b;
+  --surface-soft: #262420;
+  --surface-hover: #2f2c27;
+
+  --ink-900: #f3efe7;
+  --ink-700: #ded8cd;
+  --ink-600: #c1bbb1;
+  --ink-400: #9d978d;        /* 标签、说明 */
+  --ink-300: #7c766d;        /* 只用于禁用态与占位符 */
+
+  --line: #35322d;
+  --line-strong: #474339;
+  --hairline: #2b2925;
+
+  --vermilion: #e08a76;                      /* 夜里的朱要更亮才当得了文字 */
+  --vermilion-fill: #b8482f;
+  --vermilion-fill-hover: #cc5735;
+  --vermilion-soft: rgba(224, 138, 118, 0.14);
+  --vermilion-border: rgba(224, 138, 118, 0.45);
+  --vermilion-wash: rgba(224, 138, 118, 0.09);
+  --moss: #8aa681;           /* 节气绿在夜里要提亮 */
+
+  --ring-ink: rgba(243, 239, 231, 0.24);
+  --scrim: rgba(0, 0, 0, 0.58);
+  --scrim-strong: rgba(0, 0, 0, 0.9);
+
+  /* 最深的两档蓝在夜里几乎看不见，同色相提亮；绿/黄/橘原本就够亮，保持不变 */
+  --tone-1: #9db1db;
+  --tone-2: #7d99cd;
+
+  --shadow-2: 0 6px 20px rgba(0, 0, 0, 0.45);
+  --shadow-3: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink-900);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.hidden { display: none !important; }
+.muted { color: var(--ink-400); }
+.small { font-size: var(--fs-small); }
+
+/* --------------------------------------------------------------------------
+   文字按钮：hover 时下划线转朱色
+   -------------------------------------------------------------------------- */
+button {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 400;
+  letter-spacing: var(--ls-body);
+  color: var(--ink-600);
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  cursor: pointer;
+  position: relative;
+  transition: color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+}
+button:hover { color: var(--ink-900); background: var(--surface-hover); }
+button:focus-visible { outline: 2px solid var(--vermilion); outline-offset: 1px; }
+button:disabled { color: var(--ink-300); cursor: default; background: none; }
+
+/* 主操作：朱色填充，一眼看出这是「这一步」 */
+.primary-btn {
+  color: #fff9f4;
+  background: var(--vermilion-fill);
+  border: 1px solid var(--vermilion-fill);
+  border-radius: var(--radius-sm);
+  padding: 8px 20px;
+  letter-spacing: 0.08em;
+  font-size: var(--fs-small);
+}
+.primary-btn:hover { background: var(--vermilion-fill-hover); color: #fff9f4; }
+/* 禁用态退成纸面，不要一块灰石头 */
+.primary-btn:disabled {
+  background: var(--surface-soft);
+  border-color: var(--line);
+  color: var(--ink-300);
+}
+
+/* 次级操作：有边界但不抢眼 */
+.ghost-btn {
+  color: var(--ink-700);
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  padding: 7px 16px;
+  font-size: var(--fs-small);
+}
+.ghost-btn:hover { background: var(--surface-hover); color: var(--ink-900); border-color: var(--ink-400); }
+
+/* 图标位：文字符号，给一个可见的点击区 */
+.icon-btn {
+  min-width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-small);
+  color: var(--ink-600);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 0 8px;
+}
+.icon-btn:hover { color: var(--ink-900); background: var(--surface-hover); border-color: var(--line-strong); }
+
+/* 危险操作 */
+.danger-btn { color: var(--vermilion); border-color: rgba(156, 61, 46, 0.35); background: var(--surface); }
+.danger-btn:hover { background: var(--vermilion-soft); color: var(--vermilion); border-color: var(--vermilion); }
+
+/* --------------------------------------------------------------------------
+   输入：有边界才填得进去
+   -------------------------------------------------------------------------- */
+input[type="text"],
+input[type="password"],
+input[type="search"],
+textarea,
+select {
+  font-family: inherit;
+  font-size: var(--fs-body);
+  font-weight: 400;
+  letter-spacing: var(--ls-body);
+  color: var(--ink-900);
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  outline: none;
+  width: 100%;
+  transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+  appearance: none;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--vermilion);
+  box-shadow: 0 0 0 3px var(--vermilion-soft);
+}
+input::placeholder, textarea::placeholder { color: var(--ink-400); opacity: 1; }
+select { cursor: pointer; }
+select option { background: var(--surface); color: var(--ink-900); }
+
+/* 滚动条 */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--ink-300);
+  border-radius: var(--radius-round);
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--ink-400); background-clip: content-box; }
+
+/* --------------------------------------------------------------------------
+   通用面：卡片 / 面板 / 分组
+   -------------------------------------------------------------------------- */
+.surface {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* --------------------------------------------------------------------------
+   提示
+   -------------------------------------------------------------------------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%) translateY(6px);
+  opacity: 0;
+  color: var(--ink-900);
+  font-size: var(--fs-small);
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: 10px 20px;
+  box-shadow: var(--shadow-2);
+  pointer-events: none;
+  z-index: 90;
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* --------------------------------------------------------------------------
+   动效
+   -------------------------------------------------------------------------- */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise { animation: rise-in var(--dur) var(--ease) both; }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

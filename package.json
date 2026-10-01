@@ -1,0 +1,22 @@
+{
+  "name": "citta",
+  "productName": "观心 Citta",
+  "version": "1.0.0",
+  "description": "观心 Citta —— 本地优先、注重隐私的个人日记应用",
+  "main": "src/main/main.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "test": "node tests/run.js",
+    "test:lunar": "node tests/lunar.test.js",
+    "test:storage": "electron tests/storage.test.js",
+    "test:e2e": "electron tests/e2e.js",
+    "build:lunar-table": "node tools/build-lunar-table.js",
+    "dist": "node tools/build-portable.js"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0"
+  }
+}
