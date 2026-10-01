@@ -1,0 +1,34 @@
+# 统一换行符，避免不同平台/编辑器反复产生「整文件都变了」的假差异。
+#
+# 本仓库的约定是源码用 LF（Unix 换行）。
+# 之前 README 一度被改成 CRLF，导致一次提交里有 800+ 行无意义变动，
+# 真实差异其实只有 9 行 —— 这个文件就是为了根治这种情况。
+
+# 默认：交给 git 判断文本/二进制，文本一律以 LF 存入仓库
+* text=auto eol=lf
+
+# 明确按文本处理（保留 LF）
+*.js    text eol=lf
+*.json  text eol=lf
+*.css   text eol=lf
+*.html  text eol=lf
+*.md    text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.txt   text eol=lf
+
+# Windows 批处理要 CRLF，否则 cmd.exe 解析 goto/label 等结构可能出问题
+*.bat   text eol=crlf
+*.cmd   text eol=crlf
+
+# 明确按二进制处理，禁止任何转换
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.7z    binary
+*.exe   binary
+*.dll   binary
+*.docx  binary
+*.bin   binary
