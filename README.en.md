@@ -298,6 +298,52 @@ The end-to-end suite guards the same operations with thresholds: load <2500ms, l
 - **The `.exe` file icon** is still Electron's default (the window and taskbar icons are Citta's own logo). Changing PE resources needs an extra tool.
 - **The release artifact is about 62.5 MB**: that is the Chromium runtime Electron ships, not the application (the app itself is 2.2 MB). Getting below 10 MB means replacing the shell — see [`docs/MIGRATION-TAURI.md`](docs/MIGRATION-TAURI.md) for the assessment.
 
+## Known issues
+
+The following were surfaced by the project's own test suite and are **left unfixed**
+for now, documented here on purpose.
+
+### Contrast: calendar dates miss the project's own floor
+
+`tests/visual.test.js` measures WCAG contrast ratios inside a real window. It treats
+body text, calendar dates, month titles and list entry text as **must-read (>= 7, AAA
+level)**, and secondary text as >= 4.5.
+
+| Element | Measured | Project floor | Result |
+| --- | --- | --- | --- |
+| Calendar date (light) | 5.7 | >= 7 | below floor |
+| Calendar date (dark) | 5.95 | >= 7 | below floor |
+| Dark theme weekday dates | 5.95 | >= 7 | below floor |
+
+Note that 5.7 already satisfies WCAG **AA** (4.5 for normal text); it just misses the
+stricter bar this project set for itself. The lighter ink is part of the "rice paper and
+ink" design language, so darkening it was not done unilaterally.
+
+### English UI: lunar festival names are untranslated
+
+After switching to English, lunar festival names (e.g. the Chinese string for
+National Day) stay in Chinese. Everything else in the UI is translated, and
+`tests/e2e.js` asserts that `CittaI18n.untranslated()` is empty, so this one
+assertion fails.
+
+It overlaps with the design trade-off noted above: lunar dates, solar terms and
+festivals are Chinese calendrical data. The current intent is "translate UI chrome,
+keep calendrical data Chinese", but festival names happen to be rendered through the
+UI path, so the untranslated-check catches them. Either add them to the translation
+table or exempt them explicitly -- not yet decided.
+
+### How CI handles this
+
+In `.github/workflows/ci.yml`:
+
+- **Gate**: the two pure-Node suites (lunar, markdown) must pass or CI fails
+- **Report**: the full six-suite run still executes and logs, but does not currently
+  gate the build
+
+That way genuine regressions fail fast, while the two known issues above do not keep
+CI permanently red. Once they are fixed, drop `continue-on-error` from the
+"Run full suite" step to promote it to a gate.
+
 ## Project layout
 
 ```
